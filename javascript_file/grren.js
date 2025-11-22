@@ -13,52 +13,6 @@ const loadData=()=>{
         
     }
 
-    const allTrees=document.getElementById("all-trees");
-    allTrees.addEventListener("click",()=>{
-        fetch(url2).then((res)=>res.json())
-               .then((trees)=> DisplayTrees(trees.plants));
-               
-            
-    })
-
-    const DisplayTrees=(trees)=>{
-        const div=document.getElementById("card-container");
-        div.innerHTML="";
-        for(const tree of trees)
-        {
-            
-            const card=document.createElement("div");
-            card.className=" w-[250px] h-[290px] md:w-[343px] md:h-[381px] mb-8 p-[16px]";
-            card.innerHTML=`
-                    <img src=${tree.image} class=" w-[212px] h-[140px] md:w-[311px] md:h-[186px]">
-                    <p>${tree.name}</p>
-                    <p>${tree.description}</p>
-                    <div class="flex justify-between items-center">
-                        <button>${tree.category}</button>
-                        <p>${tree.price}</p>
-                    </div>
-                    <button class="btn btn-block">Add Cart</button>
-                `
-
-                div.appendChild(card);
-        }
-        
-
-        
-    }
-
-    const DisplaylevelTree=(id)=>{
-        fetch(`https://openapi.programming-hero.com/api/category/${id}`)
-        .then((res)=>res.json())
-        .then((data)=>DisplayTrees(data.plants));
-
-    }
-    
-    
-
-    
-
-    
     const DisplayCategories=(data)=>{
         const div=document.getElementById("category");
         
@@ -76,6 +30,136 @@ const loadData=()=>{
         
     }
 
+
+    
+    const DisplayTrees=(trees)=>{
+        const div=document.getElementById("card-container");
+        div.innerHTML="";
+        for(const tree of trees)
+        {
+            
+            const card=document.createElement("div");
+            card.className=" w-[250px] h-[290px] md:w-[343px] md:h-[381px] mb-8 p-[16px]";
+            card.innerHTML=`
+                    <img src=${tree.image} class=" w-[212px] h-[140px] md:w-[311px] md:h-[186px]">
+                    <p onclick="DisplayDetails()">${tree.name}</p>
+                    <p>${tree.description}</p>
+                    <div class="flex justify-between items-center">
+                        <button>${tree.category}</button>
+                        <p>${tree.price}</p>
+                    </div>
+                    <button class="btn btn-block" onclick="addCart(${tree.id})">Add Cart</button>
+                `
+
+                div.appendChild(card);
+        }
+        
+
+        
+    }
+    // all tree btn click.
+    const allTrees=document.getElementById("all-trees");
+    allTrees.addEventListener("click",()=>{
+        fetch(url2).then((res)=>res.json())
+               .then((trees)=> DisplayTrees(trees.plants));
+               
+            
+    })
+//   any tree btn clicked
+    const DisplaylevelTree=(id)=>{
+        fetch(`https://openapi.programming-hero.com/api/category/${id}`)
+        .then((res)=>res.json())
+        .then((data)=>DisplayTrees(data.plants));
+
+    }
+
+    // id": 1,
+    // "image": "https://i.ibb.co.com/cSQdg7tf/mango-min.jpg",
+    // "name": "Mango Tree",
+    // "description": "A fast-growing tropical tree that produces delicious, juicy mangoes during summer. Its dense green canopy offers shade, while its sweet fruits are rich in vitamins and minerals.",
+    // "category": "Fruit Tree",
+    // "price": 500
+
+    //fruit name clicked.
+     const DisplayDetails=(id)=>{
+        fetch(`https://openapi.programming-hero.com/api/plant/${id}`).then((res)=>res.json())
+    .then((data)=>{
+        const detail=data.plants;
+       
+        
+
+            const div=document.querySelector(".modal-box");
+            div.innerHTML=`<h3 class="text-lg font-bold">Mango Tree</h3>
+                 <img src="assets/about.png">
+                <p class="py-4">Press ESC key or click the button below to close</p>
+                <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ex quae commodi consectetur, corrupti deleniti officiis repellat ut, aperiam laudantium ducimus natus, error sunt optio molestiae voluptate tempore quidem ea repudiandae?</p>
+                <div class="modal-action">
+               <form method="dialog">
+              <!-- if there is a button in form, it will close the modal -->
+             <button class="btn">Close</button>
+              </form>
+             </div>`;
+
+             
+            document.getElementById("my_modal_5").showModal();
+             
+    })
+    
+}
+
+let total=0;
+const p= document.createElement("p");
+p.innerText=`Total:${total}`;
+document.getElementById("cart").appendChild(p);
+ const addCart=(id)=>{
+    fetch(`https://openapi.programming-hero.com/api/plant/${id}`).then((res)=>res.json())
+    .then((data)=>{
+        const detail=data.plants;
+
+       
+
+        const div=document.createElement("div");
+        div.innerHTML=`<div class="flex justify-between items-center">
+        <p>${detail.name}<br>${detail.price}</p>
+        <p onclick="removeit(this,${detail.price})"><i class="fa-solid fa-xmark"></i></p>
+        
+        </div>`
+        total+=detail.price;
+        p.innerText=`Total:${total}`;
+        document.getElementById("cart").insertBefore(div,p);
+        
+        
+
+
+
+
+    
+    
+    
+    })
+ }
+
+ function removeit(para,price)
+ {
+    para.parentElement.parentElement.remove();
+    total-=price;
+    p.innerText=`Total:${total}`;
+
+ }
+
+        
+        
+
+     
+
+    // const DisplayDeatails(id)
+    
+    
+
+    
+
+    
+    
     
 
     loadData();

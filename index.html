@@ -51,7 +51,7 @@
             <div id="card-container" class=" md:grid md:grid-cols-3 md:gap-x-10">
                 
             </div>
-            <div class="bg-orange-100 w-[250px] h-[1000px]" >
+            <div class="bg-orange-100 w-[250px] h-[1000px]" id="cart" >
                 <h4>Your Cart</h4>
 
             </div>
@@ -101,7 +101,41 @@
             </div>
             </div>
         </section>
+
+        <section class="w-full flex flex-col justify-center items-center px-[635px] py-[100px] bg-[#166534]">
+            <h2>Plant a Tree Today</h2>
+            <div class="shadow-3xl p-5 bg-[#15803d] w-[650px] h-[311px]">
+                <form>
+                    <input type="text" placeholder="Your Name" class="input" />
+                    <br>
+                    <input type="text" placeholder="Your Email Address" class="input" />
+                    <br>
+                    <select id="myDropdown" name="selectedOption" class="w-full h-[48px] px-4 pr-10 border border-gray-300 rounded-lg">
+                        <option disabled selected>Number of trees</option>
+                    <option value="option1">Option 1</option>
+                   <option value="option2">Option 2</option>
+                     <option value="option3">Option 3</option>
+                    </select>
+                </form>
+            </div>
+        </section>
     </main>
+
+    <footer class="flex justify-center items-center w-full p-8 bg-[#14532d]">
+        <p class="text-white">© 2025 Green Earth. All Rights Reserved.</p>
+        
+    </footer>
+
+
+    <!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+<!-- Open the modal using ID.showModal() method -->
+<!-- <button class="btn" onclick="my_modal_5.showModal()">open modal</button> -->
+<dialog id="my_modal_5" class="modal modal-bottom sm:modal-middle">
+  <div class="modal-box">
+    
+  </div>
+</dialog>
 
 
 
