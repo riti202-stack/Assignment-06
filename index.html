@@ -41,40 +41,41 @@
     </header>
     
     <main>
-        <section>
-            <h2 class="text-center">Choose Your Trees</h2>
-            <div class="flex justify-between  items-start w-full mx-auto flex-grow-1">
-                <div id="category">
-                <h3>Categories</h3>
-                <button class="btn btn-block" id="all-trees">All Trees</button>
+        <section class="bg-[#f0fdf4] w-full mx-auto">
+            <h2 class="text-center font-semibold text-2xl">Choose Your Trees</h2>
+                 <h3 class="font-semibold text-lg text-center md:text-left">Categories</h3>
+            <div class="md:flex md:justify-between  md:items-start w-full mx-auto flex-grow-1">
+                <div id="category" class="flex justify-center items-center flex-wrap gap-2 border-gray-500 md:flex-col ">
+                
+                <button class="btn  md:btn-block  active" id="all-trees">All Trees</button>
           </div>
-            <div id="card-container" class=" md:grid md:grid-cols-3 md:gap-x-10">
+          
+            <div id="card-container" class=" flex-col justify-center items-center md:grid md:grid-cols-3 md:gap-x-10 md:space-y-20 space-y-8">
                 
             </div>
-            <div class="bg-orange-100 w-[250px] h-[1000px]" id="cart" >
-                <h4>Your Cart</h4>
+            <div class="bg-orange-100  md:w-[250px] h-[1000px] p-4 space-y-2 rounded-xl bg-white" id="cart"  >
+                <h4 class="font-semibold text-lg">Your Cart</h4>
 
             </div>
             </div>
         </section>
         
         
-        <section class="w-full mx-auto mb-10">
+        <section class="w-full mx-auto  md:p-8 bg-[#f0fdf4]  ">
             
                 <div>
-                    <h2 class="text-center">About the Campaign</h2>
-                <div class="flex justify-center items-center space-x-20">
-                    <div>
-                      <img src="assets/about.png" class="w-[530px]h-[530px]">
+                    <h2 class="text-center font-bold text-3xl">About the Campaign</h2>
+                <div class=" flex flex-col justify-center md:flex-row md:justify-around items-center ">
+                    <div class="flex justify-center items-center w-full px-6 mb-8 md:w-[530px] md:h-[530px]">
+                      <img src="assets/about.png" >
                     </div>
-                    <div>
-                        <p>Green Earth is a global tree plantation initiative dedicated to fighting<br>climate change. Since our start, we’ve planted over 500,000 trees<br>worldwide. By joining our campaign, you help restore forests, create<br>habitats for wildlife, and combat global warming.</p>
+                    <div class="md:w-[530px] md:h-[188px]">
+                        <p class="text-lg font-medium ">Green Earth is a global tree plantation initiative dedicated to fightingclimate change. Since our start, we’ve planted over 500,000 treesworldwide. By joining our campaign, you help restore forests, createhabitats for wildlife, and combat global warming.</p>
                         <ul>
-                            <li class="list-disc">Restoration of natural habitats
-                                 
-                               </li>
-                               <li>Improvement of air quality</li>
-                               <li>Support for local communities</li>
+                            <li class="list-disc ">Restoration of natural habitats
+                                </li>
+                               <li class="list-disc">Improvement of air quality</li>
+                               <li class="list-disc">Support for local communities</li>
                         </ul>
 
                     </div>
@@ -102,15 +103,15 @@
             </div>
         </section>
 
-        <section class="w-full flex flex-col justify-center items-center px-[635px] py-[100px] bg-[#166534]">
-            <h2>Plant a Tree Today</h2>
-            <div class="shadow-3xl p-5 bg-[#15803d] w-[650px] h-[311px]">
+        <section class="w-full flex flex-col justify-center py-8 items-center md:px-[635px] md:py-[100px] bg-[#166534]">
+            <h2 class="font-bold text-3xl text-white mb-8">Plant a Tree Today</h2>
+            <div class="shadow-3xl  bg-[#15803d] md:w-[650px] w-70 h-60  md:h-[311px] rounded-xl p-8">
                 <form>
-                    <input type="text" placeholder="Your Name" class="input" />
-                    <br>
-                    <input type="text" placeholder="Your Email Address" class="input" />
-                    <br>
-                    <select id="myDropdown" name="selectedOption" class="w-full h-[48px] px-4 pr-10 border border-gray-300 rounded-lg">
+                    <input type="text" placeholder="Your Name" class="input w-full mt-4" />
+                    <br><br>
+                    <input type="text" placeholder="Your Email Address" class="input w-full" />
+                    <br><br>
+                    <select id="myDropdown" name="selectedOption" class="w-full h-[48px] px-4 pr-10 border border-gray-300 rounded-lg bg-white">
                         <option disabled selected>Number of trees</option>
                     <option value="option1">Option 1</option>
                    <option value="option2">Option 2</option>

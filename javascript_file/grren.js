@@ -21,7 +21,8 @@ const loadData=()=>{
         
         const btnDiv=document.createElement("div");
         
-        btnDiv.innerHTML=`<button class="btn btn-block" onclick="DisplaylevelTree(${datas.id})">${datas.category_name}</button>`;
+        
+        btnDiv.innerHTML=`<button class="btn md:btn-block" id="${datas.id}" onclick="DisplaylevelTree(${datas.id})">${datas.category_name}</button>`;
         // console.log(btnDiv);
         
         div.appendChild(btnDiv);
@@ -30,6 +31,7 @@ const loadData=()=>{
         
     }
 
+    
 
     
     const DisplayTrees=(trees)=>{
@@ -39,20 +41,23 @@ const loadData=()=>{
         {
             
             const card=document.createElement("div");
-            card.className=" w-[250px] h-[290px] md:w-[343px] md:h-[381px] mb-8 p-[16px]";
+            card.className=" w-[250px] h-[450px] mx-auto md:w-[343px] md:h-[430px]  p-[16px] space-y-2 bg-white";
             card.innerHTML=`
                     <img src=${tree.image} class=" w-[212px] h-[140px] md:w-[311px] md:h-[186px]">
-                    <p onclick="DisplayDetails()">${tree.name}</p>
+                    <p onclick="DisplayDetails()" class="font-bold">${tree.name}</p>
                     <p>${tree.description}</p>
                     <div class="flex justify-between items-center">
-                        <button>${tree.category}</button>
+                        <button  class="bg-[#dcfce7] rounded-xl p-2  text-[#15803d]">${tree.category}</button>
                         <p>${tree.price}</p>
                     </div>
-                    <button class="btn btn-block" onclick="addCart(${tree.id})">Add Cart</button>
+                    <button class="btn btn-block rounded-2xl bg-[#15803d] text-white" onclick="addCart(${tree.id})">Add Cart</button>
                 `
 
                 div.appendChild(card);
         }
+
+        
+       
         
 
         
@@ -60,16 +65,49 @@ const loadData=()=>{
     // all tree btn click.
     const allTrees=document.getElementById("all-trees");
     allTrees.addEventListener("click",()=>{
-        fetch(url2).then((res)=>res.json())
-               .then((trees)=> DisplayTrees(trees.plants));
+
+        const div=document.getElementsByClassName("active");
+       Array.from(div).forEach(element => {
+        element.classList.remove("active");
+        
+       });
+               document.getElementById("all-trees").classList.add("active");
+                
+               fetch(url2).then((res)=>res.json())
+               .then((trees)=> 
+                {
+                    DisplayTrees(trees.plants);
+                   
+                }
+                );
+
+               
                
             
     })
 //   any tree btn clicked
     const DisplaylevelTree=(id)=>{
+
+        const div=document.getElementsByClassName("active");
+       Array.from(div).forEach(element => {
+        element.classList.remove("active");
+        
+       });
+        document.getElementById(id).classList.add("active");
+        
         fetch(`https://openapi.programming-hero.com/api/category/${id}`)
         .then((res)=>res.json())
-        .then((data)=>DisplayTrees(data.plants));
+        .then((data)=>
+            {
+                DisplayTrees(data.plants);
+               
+            }
+            
+            );
+       
+        
+
+
 
     }
 
